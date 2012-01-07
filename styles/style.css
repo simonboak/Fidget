@@ -1,0 +1,120 @@
+
+body {
+	margin: 0;
+	padding: 0;
+	font-family: Helvetica, Arial, sans-serif;
+	font-size: 100%;
+}
+
+a img {
+	border: 0;
+}
+
+
+
+
+
+
+/* === Basic Typography === */
+
+h1 {
+	
+}
+
+
+h2 {
+
+}
+
+
+h3 {
+	border-left-color: #4d6d2c;
+	border-left-style: solid;
+	border-left-width: 4px;
+	padding-left: 6px;
+	color: #4d6d2d;
+}
+
+
+h4 {
+	margin-bottom: 0px;
+	font-size: 15px;
+	font-weight: bold;
+}
+
+
+p {
+	margin-top: 0;
+	margin-bottom: 15px;
+	line-height: 18px;
+	font-size: 13px;
+	color: #000;
+}
+
+
+ul {
+	margin-bottom: 15px;
+}
+
+
+li {
+	margin-bottom:5px;
+	line-height: 18px;
+	font-size: 13px;
+	color: #000;
+}
+
+
+a,
+a:link {
+	color: #000;
+	text-decoration: underline;
+}
+
+a:visited {
+	color: #000;
+}
+
+a:hover,
+a:active {
+	color: #333;
+}
+
+
+.button {
+}
+
+
+/* === Layout === */
+
+#wrapper {
+	width: 740px;
+	margin: 0 auto;
+}
+
+
+header {
+	width: 940px;
+	margin-bottom: 20px;
+}
+
+
+section {
+	clear: both;
+	padding-top: 30px;
+}
+
+
+.column {
+	width: 350px;
+	float: left;
+	margin-right: 20px;
+}
+
+
+#docs article h3 {
+	margin-top: 30px;
+}
+
+
+

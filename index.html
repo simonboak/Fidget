@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Fidget - JavaScript Multi-Touch Event Library for Mobile WebKit</title>
+	
+	<link rel="stylesheet" type="text/css" href="styles/style.css" />
+	<link rel="stylesheet" type="text/css" href="styles/github.css" />
+	
+	<script type="text/javascript" src="scripts/highlight.pack.js"></script>
+	<script type="text/javascript">
+		hljs.initHighlightingOnLoad();
+	</script>
+	
+	<script type="text/javascript">
+	  var _gaq = _gaq || [];
+	  _gaq.push(['_setAccount', 'UA-2041597-3']);
+	  _gaq.push(['_trackPageview']);
+	  (function() {
+	    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+	    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+	    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	  })();
+	</script>
+</head>
+<body>
+<div id="wrapper">
+
+	<header>
+		<h1>Fidget</h1>
+		<h2>A jQuery multi-touch event plugin for Mobile WebKit</h2>
+	</header>
+	
+	
+	<section id="intro">
+		<article id="about" class="column">
+			<h3>About</h3>
+			<p>Fidget is a jQuery plugin that makes it easy to add multi-touch gesture recognition to your mobile site and web apps.</p>
+			<p>It uses the Touch Event object in Mobile WebKit on both iOS and the later versions of Android. Use Fidget to detect when a multi-touch gesture is performed on a DOM element and can drag or scale those elements. You also get a Fidget event object to help build multi-touch interfaces.</p>
+		</article>
+		
+		<article id="feedback" class="column">
+			<h3>Feedback</h3>
+			<p>This is my university Honours project and I am looking for feedback to be able to evaluate its success. Please email your comments to <a href="mailto:fidget.js@gmail.com">fidget.js@gmail.com</a>. I welcome comments on what makes the Fidget API good, what's bad, and anywhere that it can be improved on. This applies mainly to the API but comments on the actual code would be useful too. Your feedback will be used in my dissertation but is kept 100% anonymous.</p>
+		</article>
+	</section>
+	
+	
+	<section id="panel">
+		<article id="download" class="column">
+			<h2>Download</h2>
+			<p><a href="scripts/jquery.fidget.beta.1.js.txt" class="button">Fidget - Beta 1 (9 KB)</a></p>
+		</article>
+		
+		<!--<article id="share" class="column">
+			<h2>Share</h2>
+			<p>Spread the word.</p>
+		</article>-->
+	</section>
+	
+	
+	
+	<section id="docs">
+		<h2>Documentation</h2>
+		<article id="gettingStarted">
+			<h3>Getting Started</h3>
+			<p>Add jQuery and the Fidget plugin to your HTML file. Now all you need to do is this:</p>
+			<pre><code>
+&lt;script type="text/javascript" src="scripts/jquery.min.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript" src="scripts/fidget.min.js"&gt;&lt;/script&gt;
+
+&lt;script type="text/javascript"&gt;
+	$('.dragMe').fidget({ dragThis: true });
+&lt;/script&gt;
+			</code></pre>
+			
+			<p>Now any element with the class of <code>dragMe</code> can be dragged around the page by a single finger. Want to do something else while it gets dragged? Just add another option and your own function will get called:</p>
+			
+			<pre><code>
+&lt;script type="text/javascript"&gt;
+	$('.dragMe').fidget({ dragThis: true, swipe: handleSwipe });
+
+	function handleSwipe(event, fidget) {
+		$('.dragMe').html('&lt;p&gt;Status: ' + fidget.swipe.status + '&lt;/p&gt;');
+	}
+&lt;/script&gt;
+			</code></pre>
+			
+			<p>The handleSwipe function receives the event object and the fidget object. Using the <code>swipe.status</code> property, the function updates the HTML of the element to say wether the swipe gesture has started, moving, ended or cancelled.</p>
+			<p>Set <code>dragThis</code> to false (it's default value) and Fidget will no longer move the element, leaving your function to do its own work.</p>
+		</article>
+		
+		
+		
+		
+		<article id="methods">
+			<h3>The Fidget Method</h3>
+			<p></p>
+<pre><code class="javascript">
+$(element).fidget({
+	swipe: null,
+	dragThis: false,
+	pinch: null,
+	zoomThis: false,
+	rotateThis: false,
+	tap: null,
+	doubleTap: null
+});
+</code></pre>
+			<ul>
+				<li><strong>swipe:</strong> this option defines a function to accept the event when a swipe occurs on the target element. This event is called on swipe start, move and end.</li>
+				<li><strong>dragThis:</strong> when set to true, the target element will be dragged around the page, all handled by Fidget making it easy to create draggable objects. Swipe (above) still gets called.</li>
+				<li><strong>pinch:</strong> this option defines a function to accept the event when a pinch occurs on the target element. This event is called on swipe start, move and end.</li>
+				<li><strong>zoomThis:</strong> when set to true, the target element's dimensions will be scaled up when it is a pinch out event, and scaled down when it is a pinch in event. Pinch (above) still gets called.</li>
+				<li><strong>rotateThis:</strong> when set to true, the CSS3 rotation property is changed on the target element to rotate as the first 2 fingers rotate from their original position. The origin of rotation is set to the centre coordinates of the pinch.</li>
+				<li><strong>tap:</strong> this option defines a function to accept tap events.</li>
+				<li><strong>doubleTap:</strong> this option defines a function to accept a double tap event. On the first tap the above event will be called, if the second tap occurs within 1 second the doubleTap event is triggered.</li>
+			</ul>
+		</article>
+		
+		
+		
+		<article id="objects">
+			<h3>The Fidget Object</h3>
+			<p>When Fidget calls a function, it sends 2 objects: the original event object from the browser, and the <code>fidget</code> object.</p>
+			<p>You can explore the <code>fidget</code> object by writing <code>console.log(fidget);</code> within your function.</p> 
+			<p>The <code>fidget</code> object provides many properties giving information on the multi-touch event. The available properties are:</p>
+			
+			<h4>fidget.startFingers</h4>
+			<p>A list of the fingers when the <code>touchStart</code> event is fired. They are taken from the WebKit touch event (the <code>touches</code> list) and used by Fidget to calculate some of the properties in the Fidget object. Details for the Touch object <a href="http://developer.apple.com/library/safari/#documentation/UserExperience/Reference/TouchEventClassReference/TouchEvent/TouchEvent.html" target="_blank">can be found in the Apple Developer documentation</a>.</p>
+			
+			<h4>fidget.currentFingers</h4>
+			<p>A list in the same form as <code>fidget.startFingers</code> only it is updated with each move of a finger. Getting the length of this list will give the number of fingers on the screen.</p>
+			
+			<h4>fidget.duration</h4>
+			<p>The number of seconds from the first touch to the current touch move.</p>
+			
+			<h4>fidget.startPosition</h4>
+			<p>A JSON list of the x and y coordinates of the first finger to touch the screen. Access using <code>fidget.startPosition.x</code> and <code>fidget.startPosition.y</code></p>
+			
+			<h4>fidget.swipe.status</h4>
+			<p>A string declaring the current status of a swipe event. Possible values are 'start', 'move', 'end' and 'cancel'.</p>
+			
+			<h4>fidget.swipe.distance</h4>
+			<p>A JSON list of the x and y distance from the starting position.</p>
+			
+			<h4>fidget.pinch.status</h4>
+			<p>A string declaring the current status of a pinch event. Possible values are 'start', 'move', 'end', and 'cancel'.</p>
+			
+			<h4>fidget.pinch.distance</h4>
+			<p>A distance between the first 2 fingers of a pinch event in pixels.</p>
+			
+			<h4>fidget.pinch.direction</h4>
+			<p>A string declaring whether the pinch has moved <code>in</code> or <code>out</code> relative to the first position of the fingers. Will be 'unknown' until a finger moves.</p>
+		</article>
+		
+	
+	
+	</section>
+	
+	
+	
+	
+	
+	
+	
+	<section id="extras">
+		<article id="todo">
+			<h3>To Do List</h3>
+			<ul>
+				<li>Tap should not trigger <code>up</code> if the finger is not over the target.</li>
+				<li>Complete double tap implementation.</li>
+				<li>Fix issues with <code>zoomThis</code> in pinch.</li>
+				<li>Get <code>rotateThis</code> working.</li>
+				<li>Allow the removal of events.</li>
+				<li>Use mouse events if the client does not support touch.</li>
+				<li>Any speed improvements.</li>
+				<li>Add momentum to <code>dragThis</code>.</li>
+				<li>Full documentation.</li>
+			</ul>
+		</article>
+	</section>
+	
+	
+	
+	
+	
+	
+	<footer><p>Copyright &copy; Simon Boak 2011<br />Fidget is distributed under the MIT license.</p></footer>
+	
+</div>
+</body>
+</html>
