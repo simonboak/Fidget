@@ -1,17 +1,21 @@
 Fidget - Add multi-touch gestures to your mobile site or web app
 
+Fidget is a jQuery plugin that makes it easy to add multi-touch gesture 
+recognition to your mobile site and web apps.
+
+It uses the Touch Event object in Mobile WebKit on both iOS and the later 
+versions of Android. Use Fidget to detect when a multi-touch gesture is 
+performed on a DOM element and can drag or scale those elements. You also 
+get a Fidget event object to help build multi-touch interfaces.
+			
+			
+			
+
 Public Beta 1 - 20 Dec 2011
 
 Copyright (c) 2011 Simon Boak, http://www.simonboak.co.uk/fidget/
 
 See index.html for full documentation and demo.html for a basic demonstration.
-
-
-
-
-
-
-
 
 
 
